@@ -36,18 +36,18 @@ const initialState = {
   cart: []
 };
 
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
+export default function reducer(state = initialState, { payload, type }) {
+  switch (type) {
     case CART_ADD_PRODUCT:
       return {
         ...state,
-        cart: [...state.cart, action.payload]
+        cart: [...state.cart, payload]
       };
     case CART_REMOVE_PRODUCT:
       return {
         ...state,
         cart: state.cart.filter(product => {
-          return product.name !== action.payload.name;
+          return product.name !== payload.name;
         })
       };
     case CART_RESET:

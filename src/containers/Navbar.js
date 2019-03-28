@@ -2,12 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
-const Wrapper = styled.nav`
-  padding: 0.5rem;
-  background-color: red;
-`;
-
-const Navbar = props => {
+export const Navbar = props => {
   const { cart } = props;
   return (
     <Wrapper>
@@ -15,6 +10,11 @@ const Navbar = props => {
     </Wrapper>
   );
 };
+
+const Wrapper = styled.nav`
+  padding: 0.5rem;
+  background-color: red;
+`;
 
 const mapStateToProps = state => {
   return {

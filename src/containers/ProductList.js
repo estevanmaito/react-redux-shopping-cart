@@ -4,20 +4,20 @@ import styled from "styled-components";
 
 import Product from "../components/Product";
 
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: repeat(2, 400px);
-  grid-auto-rows: 300px;
-  grid-gap: 1rem;
-`;
-
-const ProductList = props => (
+export const ProductList = props => (
   <Wrapper>
     {props.products.map(product => (
       <Product key={product.name} product={product} />
     ))}
   </Wrapper>
 );
+
+const Wrapper = styled.section`
+  display: grid;
+  grid-template-columns: repeat(2, 400px);
+  grid-auto-rows: 300px;
+  grid-gap: 1rem;
+`;
 
 function mapStateToProps(state) {
   return {
