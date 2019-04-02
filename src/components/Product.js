@@ -25,12 +25,15 @@ const Image = styled.img`
   max-width: 100%;
   height: 170px;
 `;
+Image.displayName = "Image";
 
 const Price = styled.span`
   font-size: 1.5rem;
 `;
+Price.displayName = "Price";
 
 const Button = styled.button``;
+Button.displayName = "Button";
 
 const mapDispatchToProps = {
   cartAddProduct
