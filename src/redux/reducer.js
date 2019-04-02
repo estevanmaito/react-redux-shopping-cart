@@ -1,6 +1,6 @@
 import { CART_ADD_PRODUCT, CART_REMOVE_PRODUCT, CART_RESET } from "./actions";
 
-const initialState = {
+export const initialState = {
   products: [
     {
       imgUrl:
