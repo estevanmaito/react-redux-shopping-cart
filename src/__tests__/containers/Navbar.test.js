@@ -1,11 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { Navbar } from "../../containers/Navbar";
+import Cart from "../../containers/Cart";
 
 describe("<Navbar> unit", () => {
-  it("should render the navbar with an empty cart", () => {
+  it("should render the navbar with a cart", () => {
     const wrapper = shallow(<Navbar />);
 
-    expect(wrapper.contains("Cart")).toBe(true);
+    expect(wrapper.find(Cart)).toHaveLength(1);
   });
 });
