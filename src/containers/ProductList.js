@@ -7,7 +7,7 @@ import Product from "../components/Product";
 export const ProductList = props => (
   <Wrapper>
     {props.products.map(product => (
-      <Product key={product.name} product={product} />
+      <Product key={product.id} product={product} />
     ))}
   </Wrapper>
 );

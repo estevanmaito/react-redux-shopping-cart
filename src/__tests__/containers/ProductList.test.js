@@ -10,12 +10,14 @@ import Product from "../../components/Product";
 
 const props = [
   {
+    id: 1,
     imgUrl:
       "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
     name: "'70s RETRO GLAM KEFIAH",
     price: 20
   },
   {
+    id: 2,
     imgUrl:
       "https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
     name: "GLORIA HIGH LOGO SNEAKER",
