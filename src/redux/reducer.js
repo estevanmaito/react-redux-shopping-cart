@@ -44,15 +44,25 @@ export const initialState = {
 export default function reducer(state = initialState, { payload, type }) {
   switch (type) {
     case CART_ADD_PRODUCT:
-      return {
-        ...state,
-        cart: [...state.cart, payload]
-      };
+      const itemExists = state.cart.find(i => i.id === payload.id);
+      if (itemExists) {
+        return {
+          ...state,
+          cart: state.cart.map(i => {
+            return i.id === payload.id ? { ...i, quantity: i.quantity + 1 } : i;
+          })
+        };
+      } else {
+        return {
+          ...state,
+          cart: [...state.cart, { ...payload, quantity: 1 }]
+        };
+      }
     case CART_REMOVE_PRODUCT:
       return {
         ...state,
         cart: state.cart.filter(product => {
-          return product.name !== payload.name;
+          return product.id !== payload.id;
         })
       };
     case CART_RESET:
