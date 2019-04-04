@@ -1,4 +1,9 @@
-import { CART_ADD_PRODUCT, CART_REMOVE_PRODUCT, CART_RESET } from "./actions";
+import {
+  CART_ADD_PRODUCT,
+  CART_REMOVE_PRODUCT,
+  CART_RESET,
+  CART_UPDATE_TOTAL_PRICE
+} from "./actions";
 
 export const initialState = {
   products: [
@@ -83,6 +88,17 @@ export default function reducer(state = initialState, { payload, type }) {
       return {
         ...state,
         cart: initialState.cart
+      };
+    case CART_UPDATE_TOTAL_PRICE:
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          totalPrice: state.cart.items.reduce(
+            (acc, i) => acc + i.price * i.quantity,
+            0
+          )
+        }
       };
     default:
       return state;

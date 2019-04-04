@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import reducer from "../../redux/reducer";
 import ProductComponent, { Product } from "../../components/Product";
@@ -37,7 +38,7 @@ describe("<Product> unit", () => {
 });
 
 describe("<Product> integration", () => {
-  const store = createStore(reducer);
+  const store = createStore(reducer, applyMiddleware(thunk));
 
   it("should add a product to the cart when button is clicked", () => {
     const wrapper = mount(

@@ -6,13 +6,19 @@ import CartListItem from "../components/CartListItem";
 
 export const CartList = props => {
   let productList;
-  if (props.cart.length) {
-    productList = props.cart.map(i => <CartListItem {...i} key={i.id} />);
+  if (props.cart.items.length) {
+    productList = props.cart.items.map(i => <CartListItem {...i} key={i.id} />);
   } else {
-    productList = <p>Your cart is empty :(</p>;
+    productList = <p className="empty-cart">Your cart is empty :(</p>;
   }
 
-  return <Wrapper>{productList}</Wrapper>;
+  return (
+    <Wrapper>
+      {productList}
+      <br />
+      {props.cart.totalPrice}
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`

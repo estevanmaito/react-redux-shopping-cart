@@ -1,13 +1,16 @@
 import {
   CART_ADD_PRODUCT,
   CART_REMOVE_PRODUCT,
-  CART_RESET
+  CART_RESET,
+  CART_UPDATE_TOTAL_PRICE
 } from "../../redux/actions";
 
 import {
   cartAddProduct,
   cartRemoveProduct,
-  cartReset
+  cartReset,
+  cartUpdateTotalPrice,
+  cartAddProductAndUpdateTotalPrice
 } from "../../redux/actions";
 
 const payload = {
@@ -41,6 +44,22 @@ describe("cart actions", () => {
       expect(cartReset()).toEqual({
         type: CART_RESET
       });
+    });
+  });
+
+  describe("cartUpdateTotalPrice", () => {
+    it("should return the correct type when update the cart total price", () => {
+      expect(cartUpdateTotalPrice()).toEqual({
+        type: CART_UPDATE_TOTAL_PRICE
+      });
+    });
+  });
+
+  describe("cartAddProductAndUpdateTotaPrie", () => {
+    it("should return the correct type", () => {
+      // expect(cartAddProductAndUpdateTotalPrice(payload)).toEqual({
+      //   type: CART_UPDATE_TOTAL_PRICE
+      // });
     });
   });
 });
