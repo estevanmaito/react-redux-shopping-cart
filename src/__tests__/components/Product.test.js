@@ -48,7 +48,7 @@ describe("<Product> integration", () => {
 
     wrapper.find("Button").simulate("click");
 
-    expect(store.getState().cart[0]).toEqual({ ...props, quantity: 1 });
-    expect(store.getState().cart).toHaveLength(1);
+    expect(store.getState().cart.items[0]).toEqual({ ...props, quantity: 1 });
+    expect(store.getState().cart.items).toHaveLength(1);
   });
 });

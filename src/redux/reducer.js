@@ -38,37 +38,51 @@ export const initialState = {
       price: 20
     }
   ],
-  cart: []
+  cart: {
+    items: [],
+    totalPrice: 0
+  }
 };
 
 export default function reducer(state = initialState, { payload, type }) {
   switch (type) {
     case CART_ADD_PRODUCT:
-      const itemExists = state.cart.find(i => i.id === payload.id);
+      const itemExists = state.cart.items.find(i => i.id === payload.id);
       if (itemExists) {
         return {
           ...state,
-          cart: state.cart.map(i => {
-            return i.id === payload.id ? { ...i, quantity: i.quantity + 1 } : i;
-          })
+          cart: {
+            ...state.cart,
+            items: state.cart.items.map(i => {
+              return i.id === payload.id
+                ? { ...i, quantity: i.quantity + 1 }
+                : i;
+            })
+          }
         };
       } else {
         return {
           ...state,
-          cart: [...state.cart, { ...payload, quantity: 1 }]
+          cart: {
+            ...state.cart,
+            items: [...state.cart.items, { ...payload, quantity: 1 }]
+          }
         };
       }
     case CART_REMOVE_PRODUCT:
       return {
         ...state,
-        cart: state.cart.filter(product => {
-          return product.id !== payload.id;
-        })
+        cart: {
+          ...state.cart,
+          items: state.cart.items.filter(product => {
+            return product.id !== payload.id;
+          })
+        }
       };
     case CART_RESET:
       return {
         ...state,
-        cart: []
+        cart: initialState.cart
       };
     default:
       return state;
