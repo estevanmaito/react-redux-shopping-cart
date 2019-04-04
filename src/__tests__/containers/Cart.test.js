@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 
 import { Cart, getTotalItemsInCart } from "../../containers/Cart";
+import CartList from "../../containers/CartList";
 
 const props = {
   cart: []
@@ -12,6 +13,20 @@ describe("<Cart> unit", () => {
     const wrapper = shallow(<Cart {...props} />);
 
     expect(wrapper.find("span").text()).toEqual("0");
+  });
+
+  it("should render without CartList", () => {
+    const wrapper = shallow(<Cart {...props} />);
+
+    expect(wrapper.find(CartList)).toHaveLength(0);
+  });
+
+  it("should render CartList on click", () => {
+    const wrapper = shallow(<Cart {...props} />);
+
+    wrapper.find("ClickableElement").simulate("click");
+
+    expect(wrapper.find(CartList)).toHaveLength(1);
   });
 });
 
