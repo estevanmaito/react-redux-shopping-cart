@@ -16,7 +16,7 @@ export const CartList = props => {
     <Wrapper>
       {productList}
       <br />
-      {props.cart.totalPrice}
+      <p>Subtotal: $ {props.cart.totalPrice}</p>
     </Wrapper>
   );
 };

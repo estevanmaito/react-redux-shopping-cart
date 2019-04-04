@@ -5,8 +5,8 @@ export const CartListItem = props => (
   <Wrapper>
     <Image src={props.imgUrl} alt={props.name} />
     <Name>{props.name}</Name>
-    <Price>$ {props.price}</Price>
     <Quantity>- {props.quantity} +</Quantity>
+    <Price>$ {props.price}</Price>
   </Wrapper>
 );
 
