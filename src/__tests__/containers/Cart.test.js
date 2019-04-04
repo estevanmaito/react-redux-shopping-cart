@@ -5,7 +5,10 @@ import { Cart, getTotalItemsInCart } from "../../containers/Cart";
 import CartList from "../../containers/CartList";
 
 const props = {
-  cart: []
+  cart: {
+    items: [],
+    totalPrice: 0
+  }
 };
 
 describe("<Cart> unit", () => {

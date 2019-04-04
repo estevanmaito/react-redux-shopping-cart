@@ -20,7 +20,7 @@ export const Cart = props => {
       <ClickableElement onClick={handleCartVisibility}>
         <ReactSVG src="assets/img/cart-icon.svg" />
       </ClickableElement>
-      <span>{getTotalItemsInCart(props.cart)}</span>
+      <span>{getTotalItemsInCart(props.cart.items)}</span>
       {isCartVisible && <CartList />}
     </Wrapper>
   );
