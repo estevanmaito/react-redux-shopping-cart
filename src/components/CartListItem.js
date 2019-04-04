@@ -7,13 +7,13 @@ export const CartListItem = props => (
     <Name>{props.name}</Name>
     <Price>$ {props.price}</Price>
     <Quantity>- {props.quantity} +</Quantity>
-    <hr />
   </Wrapper>
 );
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #000;
 `;
 
 const Image = styled.img`
