@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
-import { cartAddProductAndUpdateTotalPrice } from "../redux/actions";
+import { cartAddOrIncrementProduct } from "../redux/actions";
 
 export const Product = props => {
   const { product } = props;
@@ -10,7 +10,7 @@ export const Product = props => {
       <Image src={product.imgUrl} alt={product.name} />
       <h3>{product.name}</h3>
       <Price>${product.price}</Price>
-      <Button onClick={() => props.cartAddProductAndUpdateTotalPrice(product)}>
+      <Button onClick={() => props.cartAddOrIncrementProduct(product)}>
         add to cart
       </Button>
     </Wrapper>
@@ -38,7 +38,7 @@ const Button = styled.button``;
 Button.displayName = "Button";
 
 const mapDispatchToProps = {
-  cartAddProductAndUpdateTotalPrice
+  cartAddOrIncrementProduct
 };
 
 export default connect(

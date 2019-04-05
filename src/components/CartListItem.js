@@ -1,14 +1,42 @@
 import React from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
-export const CartListItem = props => (
-  <Wrapper>
-    <Image src={props.imgUrl} alt={props.name} />
-    <Name>{props.name}</Name>
-    <Quantity>- {props.quantity} +</Quantity>
-    <Price>$ {props.price}</Price>
-  </Wrapper>
-);
+import {
+  cartAddOrIncrementProduct,
+  cartDecreaseProductQuantity,
+  cartRemoveProduct
+} from "../redux/actions";
+import QuantityInput from "../components/QuantityInput";
+
+export const CartListItem = props => {
+  const handleQuantityIncrement = () => {
+    props.cartAddOrIncrementProduct(props);
+  };
+
+  const handleQuantityDecrement = () => {
+    if (props.quantity) {
+      props.cartDecreaseProductQuantity(props);
+    } else {
+      props.cartRemoveProduct(props);
+    }
+  };
+  const handleQuantityInputChange = () => {};
+
+  return (
+    <Wrapper>
+      <Image src={props.imgUrl} alt={props.name} />
+      <Name>{props.name}</Name>
+      <QuantityInput
+        onIncrement={handleQuantityIncrement}
+        onDecrement={handleQuantityDecrement}
+        onInputChange={handleQuantityInputChange}
+        quantity={props.quantity}
+      />
+      <Price>$ {props.price}</Price>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,9 +58,13 @@ const Price = styled.p`
   flex-basis: 70px;
 `;
 
-const Quantity = styled.p`
-  text-align: center;
-  flex-basis: 50px;
-`;
+const mapDispatchToProps = {
+  cartAddOrIncrementProduct,
+  cartDecreaseProductQuantity,
+  cartRemoveProduct
+};
 
-export default CartListItem;
+export default connect(
+  null,
+  mapDispatchToProps
+)(CartListItem);
