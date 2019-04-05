@@ -20,7 +20,7 @@ export const Cart = props => {
       <ClickableElement onClick={handleCartVisibility}>
         <ReactSVG src="assets/img/cart-icon.svg" />
       </ClickableElement>
-      <span>{getTotalItemsInCart(props.cart.items)}</span>
+      <CartItemCount>{getTotalItemsInCart(props.cart.items)}</CartItemCount>
       {isCartVisible && <CartList />}
     </Wrapper>
   );
@@ -37,6 +37,13 @@ const ClickableElement = styled.div`
   cursor: pointer;
 `;
 ClickableElement.displayName = "ClickableElement";
+
+const CartItemCount = styled.div`
+  background-color: #eee;
+  border-radius: 2px;
+  padding: 2px;
+`;
+CartItemCount.displayName = "CartItemCount";
 
 function mapStateToProps(state) {
   return {

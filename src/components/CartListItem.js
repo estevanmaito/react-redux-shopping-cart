@@ -15,13 +15,12 @@ export const CartListItem = props => {
   };
 
   const handleQuantityDecrement = () => {
-    if (props.quantity) {
+    if (props.quantity > 1) {
       props.cartDecreaseProductQuantity(props);
     } else {
       props.cartRemoveProduct(props);
     }
   };
-  const handleQuantityInputChange = () => {};
 
   return (
     <Wrapper>
@@ -30,7 +29,6 @@ export const CartListItem = props => {
       <QuantityInput
         onIncrement={handleQuantityIncrement}
         onDecrement={handleQuantityDecrement}
-        onInputChange={handleQuantityInputChange}
         quantity={props.quantity}
       />
       <Price>$ {props.price}</Price>

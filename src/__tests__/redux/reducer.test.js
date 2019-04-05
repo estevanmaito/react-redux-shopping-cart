@@ -50,6 +50,10 @@ describe("cart reducer", () => {
             name: "'70s RETRO GLAM KEFIAH",
             price: 20,
             quantity: 1
+          },
+          {
+            id: 2,
+            quantity: 1
           }
         ]
       };
@@ -64,11 +68,15 @@ describe("cart reducer", () => {
             name: "'70s RETRO GLAM KEFIAH",
             price: 20,
             quantity: 2
+          },
+          {
+            id: 2,
+            quantity: 1
           }
         ]
       };
 
-      expect(actual.cart.items).toHaveLength(1);
+      expect(actual.cart.items).toHaveLength(2);
       expect(actual.cart).toEqual(expected);
     });
   });
@@ -120,6 +128,10 @@ describe("cart reducer", () => {
             name: "'70s RETRO GLAM KEFIAH",
             price: 20,
             quantity: 2
+          },
+          {
+            id: 2,
+            quantity: 1
           }
         ]
       };
@@ -135,11 +147,15 @@ describe("cart reducer", () => {
             name: "'70s RETRO GLAM KEFIAH",
             price: 20,
             quantity: 1
+          },
+          {
+            id: 2,
+            quantity: 1
           }
         ]
       };
 
-      expect(actual.cart.items).toHaveLength(1);
+      expect(actual.cart.items).toHaveLength(2);
       expect(actual.cart).toEqual(expected);
     });
   });

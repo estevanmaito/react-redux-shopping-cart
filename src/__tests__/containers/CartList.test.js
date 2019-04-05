@@ -1,7 +1,10 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "../../redux/reducer";
 
-import { CartList } from "../../containers/CartList";
+import CartListComponent, { CartList } from "../../containers/CartList";
 import CartListItem from "../../components/CartListItem";
 
 describe("<CartList> unit", () => {
@@ -60,5 +63,23 @@ describe("<CartList> unit", () => {
     const wrapper = shallow(<CartList {...props} />);
 
     expect(wrapper.find(CartListItem)).toHaveLength(2);
+  });
+});
+
+describe("<CartList> integration", () => {
+  it("should render 0 as initial cart items count", () => {
+    const initialState = {
+      cart: {
+        items: [{ id: 1 }, { id: 2 }]
+      }
+    };
+    const store = createStore(reducer, initialState);
+    const wrapper = mount(
+      <Provider store={store}>
+        <CartListComponent />
+      </Provider>
+    );
+
+    expect(wrapper.find("CartListItem")).toHaveLength(2);
   });
 });
