@@ -2,7 +2,8 @@ import {
   CART_ADD_PRODUCT,
   CART_REMOVE_PRODUCT,
   CART_RESET,
-  CART_UPDATE_TOTAL_PRICE
+  CART_UPDATE_TOTAL_PRICE,
+  CART_DESCREASE_PRODUCT_QUANTITY
 } from "./actions";
 
 export const initialState = {
@@ -81,6 +82,16 @@ export default function reducer(state = initialState, { payload, type }) {
           ...state.cart,
           items: state.cart.items.filter(product => {
             return product.id !== payload.id;
+          })
+        }
+      };
+    case CART_DESCREASE_PRODUCT_QUANTITY:
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          items: state.cart.items.map(i => {
+            return i.id === payload.id ? { ...i, quantity: i.quantity - 1 } : i;
           })
         }
       };
