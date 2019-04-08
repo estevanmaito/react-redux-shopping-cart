@@ -6,7 +6,7 @@ import {
   cartAddOrIncrementProduct,
   cartDecreaseProductQuantity,
   cartRemoveProduct
-} from "../redux/actions";
+} from "../redux/actions/cart.actions";
 import QuantityInput from "../components/QuantityInput";
 
 export const CartListItem = props => {

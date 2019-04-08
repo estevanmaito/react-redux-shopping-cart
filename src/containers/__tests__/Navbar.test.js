@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { Navbar } from "../../containers/Navbar";
-import Cart from "../../containers/Cart";
+import { Navbar } from "../Navbar";
+import Cart from "../Cart";
 
 describe("<Navbar> unit", () => {
   it("should render the navbar with a cart", () => {

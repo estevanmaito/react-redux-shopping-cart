@@ -3,8 +3,8 @@ import { shallow, mount } from "enzyme";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import reducer from "../../redux/reducer";
-import ProductComponent, { Product } from "../../components/Product";
+import reducer from "../../redux/reducers";
+import ProductComponent, { Product } from "../Product";
 
 const props = {
   id: 1,

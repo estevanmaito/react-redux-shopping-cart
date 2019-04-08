@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import { CartListItem } from "../../components/CartListItem";
+import { CartListItem } from "../CartListItem";
 
 describe("<CartListItem> unit", () => {
   it("should render without breaking", () => {

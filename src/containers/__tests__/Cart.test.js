@@ -2,13 +2,10 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import reducer from "../../redux/reducer";
+import reducer from "../../redux/reducers";
 
-import CartComponent, {
-  Cart,
-  getTotalItemsInCart
-} from "../../containers/Cart";
-import CartList from "../../containers/CartList";
+import CartComponent, { Cart, getTotalItemsInCart } from "../Cart";
+import CartList from "../CartList";
 
 const props = {
   cart: {

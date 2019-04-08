@@ -7,7 +7,7 @@ import {
   CART_RESET,
   CART_UPDATE_TOTAL_PRICE,
   CART_DESCREASE_PRODUCT_QUANTITY
-} from "../../redux/actions";
+} from "../cart.actions";
 
 import {
   cartAddOrIncrementProduct,
@@ -15,7 +15,7 @@ import {
   cartReset,
   cartUpdateTotalPrice,
   cartDecreaseProductQuantity
-} from "../../redux/actions";
+} from "../cart.actions";
 
 const payload = {
   id: 1,

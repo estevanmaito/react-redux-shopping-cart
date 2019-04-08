@@ -2,9 +2,9 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import reducer from "../../redux/reducer";
+import reducer from "../../redux/reducers";
 
-import CartListComponent, { CartList } from "../../containers/CartList";
+import CartListComponent, { CartList } from "../CartList";
 import CartListItem from "../../components/CartListItem";
 
 describe("<CartList> unit", () => {

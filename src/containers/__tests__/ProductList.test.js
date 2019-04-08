@@ -2,10 +2,8 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import reducer from "../../redux/reducer";
-import ProductListComponent, {
-  ProductList
-} from "../../containers/ProductList";
+import reducer from "../../redux/reducers";
+import ProductListComponent, { ProductList } from "../ProductList";
 import Product from "../../components/Product";
 
 const props = [

@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
-import App from "../../containers/App";
+import App from "../App";
 
-import ProductList from "../../containers/ProductList";
+import ProductList from "../ProductList";
 
 describe("<App> unit", () => {
   it("should render a Navbar and ProductList components", () => {

@@ -1,11 +1,11 @@
-import reducer, { initialState } from "../../redux/reducer";
+import reducer, { initialState } from "../cart.reducer";
 import {
   CART_ADD_PRODUCT,
   CART_REMOVE_PRODUCT,
   CART_RESET,
   CART_UPDATE_TOTAL_PRICE,
   CART_DESCREASE_PRODUCT_QUANTITY
-} from "../../redux/actions";
+} from "../../actions/cart.actions";
 
 const payload = {
   id: 1,
@@ -24,7 +24,7 @@ describe("cart reducer", () => {
     it("should add a new product to the cart", () => {
       const action = { type: CART_ADD_PRODUCT, payload };
 
-      const actual = reducer(undefined, action).cart.items;
+      const actual = reducer(undefined, action);
       const expected = [
         {
           id: 1,
@@ -36,29 +36,26 @@ describe("cart reducer", () => {
         }
       ];
 
-      expect(actual).toEqual(expected);
+      expect(actual.items).toEqual(expected);
     });
 
     it("should not add a new product to the cart if it already exists", () => {
       const action = { type: CART_ADD_PRODUCT, payload };
-      const cart = {
-        items: [
-          {
-            id: 1,
-            imgUrl:
-              "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
-            name: "'70s RETRO GLAM KEFIAH",
-            price: 20,
-            quantity: 1
-          },
-          {
-            id: 2,
-            quantity: 1
-          }
-        ]
-      };
-
-      const actual = reducer({ ...initialState, cart }, action);
+      const items = [
+        {
+          id: 1,
+          imgUrl:
+            "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+          name: "'70s RETRO GLAM KEFIAH",
+          price: 20,
+          quantity: 1
+        },
+        {
+          id: 2,
+          quantity: 1
+        }
+      ];
+      const actual = reducer({ ...initialState, items }, action);
       const expected = {
         items: [
           {
@@ -73,11 +70,12 @@ describe("cart reducer", () => {
             id: 2,
             quantity: 1
           }
-        ]
+        ],
+        totalPrice: 0
       };
 
-      expect(actual.cart.items).toHaveLength(2);
-      expect(actual.cart).toEqual(expected);
+      expect(actual.items).toHaveLength(2);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -95,21 +93,15 @@ describe("cart reducer", () => {
       // cart with 2 items
       const actual = reducer(
         {
-          ...initialState,
-          cart: {
-            items: [payload, anotherItem],
-            totalPrice: 0
-          }
+          items: [payload, anotherItem],
+          totalPrice: 0
         },
         action
       );
 
       const expected = {
-        ...initialState,
-        cart: {
-          items: [anotherItem],
-          totalPrice: 0
-        }
+        items: [anotherItem],
+        totalPrice: 0
       };
 
       expect(actual).toEqual(expected);
@@ -119,24 +111,22 @@ describe("cart reducer", () => {
   describe("cart descrease item quantity", () => {
     it("should decrease quantity of a product in the cart", () => {
       const action = { type: CART_DESCREASE_PRODUCT_QUANTITY, payload };
-      const cart = {
-        items: [
-          {
-            id: 1,
-            imgUrl:
-              "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
-            name: "'70s RETRO GLAM KEFIAH",
-            price: 20,
-            quantity: 2
-          },
-          {
-            id: 2,
-            quantity: 1
-          }
-        ]
-      };
+      const items = [
+        {
+          id: 1,
+          imgUrl:
+            "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+          name: "'70s RETRO GLAM KEFIAH",
+          price: 20,
+          quantity: 2
+        },
+        {
+          id: 2,
+          quantity: 1
+        }
+      ];
 
-      const actual = reducer({ ...initialState, cart }, action);
+      const actual = reducer({ ...initialState, items }, action);
 
       const expected = {
         items: [
@@ -152,11 +142,12 @@ describe("cart reducer", () => {
             id: 2,
             quantity: 1
           }
-        ]
+        ],
+        totalPrice: 0
       };
 
-      expect(actual.cart.items).toHaveLength(2);
-      expect(actual.cart).toEqual(expected);
+      expect(actual.items).toHaveLength(2);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -179,54 +170,48 @@ describe("cart reducer", () => {
   describe("update the total price", () => {
     it("should update the total price with one item", () => {
       const action = { type: CART_UPDATE_TOTAL_PRICE };
-      const cart = {
-        items: [
-          {
-            id: 1,
-            imgUrl:
-              "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
-            name: "'70s RETRO GLAM KEFIAH",
-            price: 20,
-            quantity: 1
-          }
-        ],
-        totalPrice: 0
-      };
+      const items = [
+        {
+          id: 1,
+          imgUrl:
+            "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+          name: "'70s RETRO GLAM KEFIAH",
+          price: 20,
+          quantity: 1
+        }
+      ];
 
-      const actual = reducer({ ...initialState, cart }, action);
+      const actual = reducer({ ...initialState, items }, action);
 
       const expected = payload.price;
 
-      expect(actual.cart.totalPrice).toEqual(expected);
+      expect(actual.totalPrice).toEqual(expected);
     });
 
     it("should update the total price with two products", () => {
       const action = { type: CART_UPDATE_TOTAL_PRICE };
-      const cart = {
-        items: [
-          {
-            imgUrl:
-              "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
-            name: "'70s RETRO GLAM KEFIAH",
-            price: 20,
-            quantity: 1
-          },
-          {
-            imgUrl:
-              "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
-            name: "'70s RETRO GLAM KEFIAH",
-            price: 40,
-            quantity: 1
-          }
-        ],
-        totalPrice: 0
-      };
+      const items = [
+        {
+          imgUrl:
+            "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+          name: "'70s RETRO GLAM KEFIAH",
+          price: 20,
+          quantity: 1
+        },
+        {
+          imgUrl:
+            "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+          name: "'70s RETRO GLAM KEFIAH",
+          price: 40,
+          quantity: 1
+        }
+      ];
 
-      const actual = reducer({ ...initialState, cart }, action);
+      const actual = reducer({ ...initialState, items }, action);
 
       const expected = 60;
 
-      expect(actual.cart.totalPrice).toEqual(expected);
+      expect(actual.totalPrice).toEqual(expected);
     });
   });
 });
