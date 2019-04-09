@@ -1,16 +1,26 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
 import Product from "../components/Product";
 
-export const ProductList = props => (
-  <Wrapper>
-    {props.products.map(product => (
-      <Product key={product.id} product={product} />
-    ))}
-  </Wrapper>
-);
+import { fetchProducts } from "../redux/actions/products.actions";
+
+export class ProductList extends Component {
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        {this.props.products.map(product => (
+          <Product key={product.id} product={product} />
+        ))}
+      </Wrapper>
+    );
+  }
+}
 
 const Wrapper = styled.section`
   display: grid;
@@ -25,4 +35,11 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ProductList);
+const mapDispatchToProps = {
+  fetchProducts
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProductList);
