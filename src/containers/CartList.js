@@ -12,7 +12,7 @@ export const CartList = props => {
         {props.cart.items.map(i => (
           <CartListItem {...i} key={i.id} />
         ))}
-        <Subtotal>Subtotal: $ {props.cart.totalPrice}</Subtotal>
+        <Subtotal>Subtotal: $ {props.cart.totalPrice.toFixed(2)}</Subtotal>
       </>
     );
   } else {

@@ -16,14 +16,14 @@ export const QuantityInput = props => (
 );
 
 const Wrapper = styled.div`
-  width: 60px;
+  width: 50px;
   height: 20px;
   border: 1px solid #ccc;
   border-radius: 3px;
 `;
 
 const Input = styled.input`
-  width: 30px;
+  width: 20px;
   height: 100%;
   padding: 0;
   border: none;

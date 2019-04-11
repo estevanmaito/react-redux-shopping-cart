@@ -28,7 +28,8 @@ describe("<CartList> unit", () => {
             price: 20,
             quantity: 2
           }
-        ]
+        ],
+        totalPrice: 0
       }
     };
     const wrapper = shallow(<CartList {...props} />);
@@ -56,7 +57,8 @@ describe("<CartList> unit", () => {
             price: 91,
             quantity: 1
           }
-        ]
+        ],
+        totalPrice: 0
       }
     };
 
@@ -70,7 +72,8 @@ describe("<CartList> integration", () => {
   it("should render 0 as initial cart items count", () => {
     const initialState = {
       cart: {
-        items: [{ id: 1 }, { id: 2 }]
+        items: [{ id: 1, price: 0 }, { id: 2, price: 0 }],
+        totalPrice: 0
       }
     };
     const store = createStore(reducer, initialState);

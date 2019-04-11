@@ -38,7 +38,7 @@ export const CartListItem = props => {
         onDecrement={handleQuantityDecrement}
         quantity={props.quantity}
       />
-      <Price>$ {props.price}</Price>
+      <Price>$ {props.price.toFixed(2)}</Price>
     </Wrapper>
   );
 };
@@ -78,8 +78,8 @@ const RemoveButton = styled.span`
 `;
 
 const Price = styled.span`
-  width: 60px;
-  text-align: center;
+  width: 80px;
+  text-align: right;
 `;
 
 const mapDispatchToProps = {
