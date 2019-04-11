@@ -22,10 +22,17 @@ export const CartListItem = props => {
     }
   };
 
+  const handleRemoveClick = () => {
+    props.cartRemoveProduct(props);
+  };
+
   return (
     <Wrapper>
       <Image src={props.imgUrl} alt={props.name} />
-      <Name>{props.name}</Name>
+      <NameWrapper>
+        <Name>{props.name}</Name>
+        <RemoveButton onClick={handleRemoveClick}>remove</RemoveButton>
+      </NameWrapper>
       <QuantityInput
         onIncrement={handleQuantityIncrement}
         onDecrement={handleQuantityDecrement}
@@ -39,21 +46,40 @@ export const CartListItem = props => {
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #000;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  height: 80px;
 `;
 
 const Image = styled.img`
-  width: 30px;
-  height: 100%;
+  width: 50px;
+  height: auto;
   margin-right: 1rem;
 `;
 
-const Name = styled.p`
+const NameWrapper = styled.div`
   flex-grow: 3;
+  display: flex;
+  flex-direction: column;
 `;
 
-const Price = styled.p`
-  flex-basis: 70px;
+const Name = styled.span``;
+
+const RemoveButton = styled.span`
+  font-size: 0.7rem;
+  cursor: pointer;
+  text-decoration: underline;
+  color: #ccc;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    color: tomato;
+  }
+`;
+
+const Price = styled.span`
+  width: 60px;
+  text-align: center;
 `;
 
 const mapDispatchToProps = {
