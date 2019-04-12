@@ -70,4 +70,20 @@ describe("<CartListItem> integration", () => {
 
     expect(actual).toHaveLength(1);
   });
+
+  it("should call cartRemoveProduct on remove click", () => {
+    const props = {
+      cartRemoveProduct: jest.fn(),
+      price: 0
+    };
+
+    const wrapper = shallow(<CartListItem {...props} />);
+
+    const RemoveButton = wrapper.find("RemoveButton");
+    RemoveButton.props().onClick();
+
+    const actual = props.cartRemoveProduct.mock.calls;
+
+    expect(actual).toHaveLength(1);
+  });
 });

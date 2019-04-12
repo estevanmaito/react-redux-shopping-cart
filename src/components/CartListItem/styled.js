@@ -35,6 +35,7 @@ export const RemoveButton = styled.span`
     color: tomato;
   }
 `;
+RemoveButton.displayName = "RemoveButton";
 
 export const Price = styled.span`
   width: 90px;
