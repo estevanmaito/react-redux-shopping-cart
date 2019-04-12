@@ -49,6 +49,7 @@ const Wrapper = styled.div`
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   height: 80px;
+  box-sizing: border-box;
 `;
 
 const Image = styled.img`
@@ -61,6 +62,7 @@ const NameWrapper = styled.div`
   flex-grow: 3;
   display: flex;
   flex-direction: column;
+  margin-right: 4px;
 `;
 
 const Name = styled.span``;
@@ -78,7 +80,7 @@ const RemoveButton = styled.span`
 `;
 
 const Price = styled.span`
-  width: 80px;
+  width: 90px;
   text-align: right;
 `;
 

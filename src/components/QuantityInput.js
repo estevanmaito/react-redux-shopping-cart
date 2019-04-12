@@ -4,13 +4,7 @@ import styled from "styled-components";
 export const QuantityInput = props => (
   <Wrapper>
     <Button onClick={props.onDecrement}>-</Button>
-    <Input
-      type="number"
-      min="1"
-      max="99"
-      value={props.quantity}
-      onChange={props.onInputChange}
-    />
+    <Quantity>{props.quantity}</Quantity>
     <Button onClick={props.onIncrement}>+</Button>
   </Wrapper>
 );
@@ -18,24 +12,16 @@ export const QuantityInput = props => (
 const Wrapper = styled.div`
   width: 50px;
   height: 20px;
-  border: 1px solid #ccc;
+  box-shadow: 0 0 0 1px #ccc;
   border-radius: 3px;
 `;
 
-const Input = styled.input`
+const Quantity = styled.span`
   width: 20px;
-  height: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
   text-align: center;
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-  }
+  display: inline-block;
 `;
-Input.displayName = "Input";
+Quantity.displayName = "Quantity";
 
 const Button = styled.button`
   box-sizing: border-box;

@@ -7,6 +7,6 @@ describe("<QuantityInput> unit", () => {
   it("should render without breaking", () => {
     const wrapper = shallow(<QuantityInput />);
 
-    expect(wrapper.find("Input")).toHaveLength(1);
+    expect(wrapper.find("Quantity")).toHaveLength(1);
   });
 });
