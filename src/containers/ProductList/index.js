@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
 
-import Product from "../components/Product";
+import Product from "../../components/Product";
 
-import { fetchProducts } from "../redux/actions/products.actions";
+import { fetchProducts } from "../../redux/actions/products.actions";
+
+import { Wrapper, Grid } from "./styled";
 
 export class ProductList extends Component {
   componentDidMount() {
@@ -23,19 +24,6 @@ export class ProductList extends Component {
     );
   }
 }
-
-const Wrapper = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding-top: 2rem;
-`;
-
-const Grid = styled.section`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 300px;
-  grid-gap: 1rem;
-`;
 
 function mapStateToProps(state) {
   return {

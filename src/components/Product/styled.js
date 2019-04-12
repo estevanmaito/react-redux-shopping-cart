@@ -1,23 +1,6 @@
-import React from "react";
 import styled from "styled-components";
-import { connect } from "react-redux";
-import { cartAddOrIncrementProduct } from "../redux/actions/cart.actions";
 
-export const Product = props => {
-  const { product } = props;
-  return (
-    <Wrapper>
-      <Image src={product.imgUrl} alt={product.name} />
-      <Price>${product.price}</Price>
-      <Name>{product.name}</Name>
-      <Button onClick={() => props.cartAddOrIncrementProduct(product)}>
-        add to cart
-      </Button>
-    </Wrapper>
-  );
-};
-
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
@@ -31,25 +14,25 @@ const Wrapper = styled.div`
   }
 `;
 
-const Image = styled.img`
+export const Image = styled.img`
   max-width: 100%;
   height: 170px;
 `;
 Image.displayName = "Image";
 
-const Name = styled.span`
+export const Name = styled.span`
   font-weight: 700;
   flex-grow: 1;
 `;
 Name.displayName = "Name";
 
-const Price = styled.span`
+export const Price = styled.span`
   font-size: 0.9rem;
   font-weight: 300;
 `;
 Price.displayName = "Price";
 
-const Button = styled.button`
+export const Button = styled.button`
   width: 100%;
   padding: 8px 0;
   border: 1px solid rgb(149, 255, 162);
@@ -72,12 +55,3 @@ const Button = styled.button`
   }
 `;
 Button.displayName = "Button";
-
-const mapDispatchToProps = {
-  cartAddOrIncrementProduct
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Product);

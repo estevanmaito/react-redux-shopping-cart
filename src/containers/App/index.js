@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import Navbar from "./Navbar";
-import ProductList from "./ProductList";
+import Navbar from "../Navbar";
+import ProductList from "../ProductList";
 
 class App extends Component {
   render() {
