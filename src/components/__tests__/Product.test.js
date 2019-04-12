@@ -25,7 +25,7 @@ describe("<Product> unit", () => {
   });
 
   it("should render the product name", () => {
-    expect(wrapper.find("h3").text()).toContain(props.name);
+    expect(wrapper.find("Name").text()).toContain(props.name);
   });
 
   it("should render the product price", () => {

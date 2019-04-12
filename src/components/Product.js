@@ -8,8 +8,8 @@ export const Product = props => {
   return (
     <Wrapper>
       <Image src={product.imgUrl} alt={product.name} />
-      <h3>{product.name}</h3>
       <Price>${product.price}</Price>
+      <Name>{product.name}</Name>
       <Button onClick={() => props.cartAddOrIncrementProduct(product)}>
         add to cart
       </Button>
@@ -18,9 +18,17 @@ export const Product = props => {
 };
 
 const Wrapper = styled.div`
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   padding: 1rem;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const Image = styled.img`
@@ -29,12 +37,40 @@ const Image = styled.img`
 `;
 Image.displayName = "Image";
 
+const Name = styled.span`
+  font-weight: 700;
+  flex-grow: 1;
+`;
+Name.displayName = "Name";
+
 const Price = styled.span`
-  font-size: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 300;
 `;
 Price.displayName = "Price";
 
-const Button = styled.button``;
+const Button = styled.button`
+  width: 100%;
+  padding: 8px 0;
+  border: 1px solid rgb(149, 255, 162);
+  border-radius: 3px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px rgb(149, 255, 162);
+  }
+
+  &:hover {
+    background-color: rgb(149, 255, 162);
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
+`;
 Button.displayName = "Button";
 
 const mapDispatchToProps = {
