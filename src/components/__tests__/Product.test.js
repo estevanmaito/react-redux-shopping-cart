@@ -1,35 +1,40 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { Provider } from "react-redux";
-import reducer from "../../redux/reducers";
-import ProductComponent, { Product } from "../Product";
+import { shallow } from "enzyme";
+import { Product } from "../Product";
 
 const props = {
-  id: 1,
-  imgUrl:
-    "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
-  name: "'70s RETRO GLAM KEFIAH",
-  price: 20
+  product: {
+    id: 1,
+    imgUrl:
+      "https://guesseu.scene7.com/is/image/GuessEU/AW6308VIS03-SAP?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0",
+    name: "'70s RETRO GLAM KEFIAH",
+    price: 20
+  },
+  cartAddOrIncrementProduct: jest.fn()
 };
 
 describe("<Product> unit", () => {
   let wrapper;
   beforeAll(() => {
-    wrapper = shallow(<Product product={props} />);
+    wrapper = shallow(<Product {...props} />);
   });
 
   it("should render the product image", () => {
-    expect(wrapper.find("Image").prop("src")).toEqual(props.imgUrl);
+    const expected = props.product.imgUrl;
+
+    expect(wrapper.find("Image").prop("src")).toEqual(expected);
   });
 
   it("should render the product name", () => {
-    expect(wrapper.find("Name").text()).toContain(props.name);
+    const expected = props.product.name;
+
+    expect(wrapper.find("Name").text()).toContain(expected);
   });
 
   it("should render the product price", () => {
-    expect(wrapper.find("Price").text()).toContain(props.price);
+    const expected = props.product.price;
+
+    expect(wrapper.find("Price").text()).toContain(expected);
   });
 
   it("should render the add to cart button", () => {
@@ -38,18 +43,11 @@ describe("<Product> unit", () => {
 });
 
 describe("<Product> integration", () => {
-  const store = createStore(reducer, applyMiddleware(thunk));
+  it("should should add a product to the cart when butotn is clicked new abordagem", () => {
+    const wrapper = shallow(<Product {...props} />);
+    const Button = wrapper.find("Button");
+    Button.simulate("click");
 
-  it("should add a product to the cart when button is clicked", () => {
-    const wrapper = mount(
-      <Provider store={store}>
-        <ProductComponent product={props} />
-      </Provider>
-    );
-
-    wrapper.find("Button").simulate("click");
-
-    expect(store.getState().cart.items[0]).toEqual({ ...props, quantity: 1 });
-    expect(store.getState().cart.items).toHaveLength(1);
+    expect(props.cartAddOrIncrementProduct).toHaveBeenCalled();
   });
 });

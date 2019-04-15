@@ -13,11 +13,13 @@ export const Product = props => {
       </ResponsiveImage>
       <Price>${product.price}</Price>
       <Name>{product.name}</Name>
-      <Button onClick={() => props.cartAddOrIncrementProduct(product)}>
-        add to cart
-      </Button>
+      <Button onClick={handleAddToCartClick}>add to cart</Button>
     </Wrapper>
   );
+
+  function handleAddToCartClick() {
+    props.cartAddOrIncrementProduct(product);
+  }
 };
 
 const mapDispatchToProps = {

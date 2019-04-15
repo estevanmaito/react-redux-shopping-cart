@@ -29,3 +29,4 @@ export const Button = styled.button`
     background-color: #eee;
   }
 `;
+Button.displayName = "Button";

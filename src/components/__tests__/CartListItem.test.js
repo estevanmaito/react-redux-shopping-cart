@@ -49,9 +49,7 @@ describe("<CartListItem> integration", () => {
     const QuantityInput = wrapper.find("QuantityInput");
     QuantityInput.props().onDecrement();
 
-    const actual = props.cartDecreaseProductQuantity.mock.calls;
-
-    expect(actual).toHaveLength(1);
+    expect(props.cartDecreaseProductQuantity).toHaveBeenCalled();
   });
 
   it("should call cartRemoveProduct if quantity is 1", () => {
@@ -66,9 +64,7 @@ describe("<CartListItem> integration", () => {
     const QuantityInput = wrapper.find("QuantityInput");
     QuantityInput.props().onDecrement();
 
-    const actual = props.cartRemoveProduct.mock.calls;
-
-    expect(actual).toHaveLength(1);
+    expect(props.cartRemoveProduct).toHaveBeenCalled();
   });
 
   it("should call cartRemoveProduct on remove click", () => {
@@ -82,8 +78,6 @@ describe("<CartListItem> integration", () => {
     const RemoveButton = wrapper.find("RemoveButton");
     RemoveButton.props().onClick();
 
-    const actual = props.cartRemoveProduct.mock.calls;
-
-    expect(actual).toHaveLength(1);
+    expect(props.cartRemoveProduct).toHaveBeenCalled();
   });
 });
