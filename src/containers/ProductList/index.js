@@ -5,7 +5,9 @@ import Product from "../../components/Product";
 
 import { fetchProducts } from "../../redux/actions/products.actions";
 
-import { Wrapper, Grid } from "./styled";
+import { Grid } from "./styled";
+
+import { Container } from "../../components/StructureStyles/styled";
 
 export class ProductList extends Component {
   componentDidMount() {
@@ -14,13 +16,13 @@ export class ProductList extends Component {
 
   render() {
     return (
-      <Wrapper>
+      <Container>
         <Grid>
           {this.props.products.map(product => (
             <Product key={product.id} product={product} />
           ))}
         </Grid>
-      </Wrapper>
+      </Container>
     );
   }
 }

@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   position: absolute;
   width: 450px;
   padding: 0 10px;
-  right: 10px;
+  right: 0;
   top: 50px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

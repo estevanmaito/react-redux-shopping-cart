@@ -14,15 +14,29 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const ResponsiveImage = styled.div`
+  margin: 0 auto;
+`;
+ResponsiveImage.displayName = "ResponsiveImage";
+
 export const Image = styled.img`
-  max-width: 100%;
-  height: 170px;
+  width: auto;
+  height: 100%;
+  max-height: 170px;
+
+  @media screen and (max-width: 600px) {
+    max-height: 80px;
+  }
 `;
 Image.displayName = "Image";
 
 export const Name = styled.span`
   font-weight: 700;
   flex-grow: 1;
+
+  @media screen and (max-width: 600px) {
+    font-size: 0.9rem;
+  }
 `;
 Name.displayName = "Name";
 
@@ -40,6 +54,12 @@ export const Button = styled.button`
   background-color: transparent;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
+  font-family: Raleway, Montserrat, "Helvetica Neue", Arial, sans-serif;
+  color: rgb(11, 81, 19);
+
+  @media screen and (max-width: 600px) {
+    padding: 4px 0;
+  }
 
   &:focus {
     outline: none;
