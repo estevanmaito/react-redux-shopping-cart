@@ -75,6 +75,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "codecov": "^3.3.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "fetch-mock": "^7.3.1",
