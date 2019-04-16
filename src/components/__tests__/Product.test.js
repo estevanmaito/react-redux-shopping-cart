@@ -43,7 +43,7 @@ describe("<Product> unit", () => {
 });
 
 describe("<Product> integration", () => {
-  it("should should add a product to the cart when butotn is clicked new abordagem", () => {
+  it("should should add a product to the cart when butotn is clicked", () => {
     const wrapper = shallow(<Product {...props} />);
     const Button = wrapper.find("Button");
     Button.simulate("click");
